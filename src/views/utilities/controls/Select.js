@@ -4,9 +4,10 @@ import MenuItem from '@mui/material/MenuItem';
 
 
 const Select = (props) => {
-    const { name, label, value, onChange, options } = props;
+    const { name, label, value,error=null, onChange, options } = props;
   return (
     <TextField
+    {...(error && {error:true,helperText:error})}
           style={{ width: "100%" }}
           variant="outlined"
           value={value}

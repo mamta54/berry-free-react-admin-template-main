@@ -4,7 +4,9 @@ import {useForm,Form} from './useForm';
 import * as employeeService from "./services/employeeService";
 import Controls from './controls/Controls';
 import Select from './controls/Select';
-import Date from './controls/Date';
+// import Date from './controls/Date';
+
+
 
 const m = (new Date().getMonth()+1) <= 9 ? "0"+(new Date().getMonth()+1) : (new Date().getMonth()+1);
     const d = new Date().getDate();
@@ -44,15 +46,53 @@ const genderItems =[
 
 const Appointments = () => {
 
+    const validate = (fieldValues = values) => {
+       let temp = {...errors}
+       if('firstname' in fieldValues)
+            temp.firstname = fieldValues.firstname ? "": "This Field is required."
+       if('mobno' in fieldValues)
+            temp.mobno = (fieldValues.mobno.length  == 10)  ? "": "This Field is required."
+       if('email1' in fieldValues)
+            temp.email1 = (/$^|.+@.+..+/).test(fieldValues.email1) ? "": "This Field is required."
+       if('doctor' in fieldValues)
+            temp.doctor = fieldValues.doctor.length !=0 ? "":"This Field is required."
+        setErrors({
+            ...temp
+        })
+        if(fieldValues == values)
+            return  Object.values(temp).every(x => x == "")
+    }
+
+
     const {
         values,
         setValues,
-        handleInputChange
-    }= useForm(initialFormValues);
+        errors,
+        setErrors,
+        handleInputChange,
+        resetForm
+    }= useForm(initialFormValues,true,validate);
 
+    useEffect(() => {
+        console.log(values);
+        }, [values.appointmentdate]);
+  
+        
     
+    const handleSubmit = e => {
+        e.preventDefault()
+        if(validate())
+        {
+            console.log(values)
+            employeeService.insertAppointment(values);
+            resetForm()
+            window.alert('testing...')
+
+        }
+    }    
+
     return (
-            <Form >
+            <Form onSubmit={handleSubmit}>
                 <Grid container spacing={2}>
                     <Grid item xs={12} sm={6}>
                         <Controls.Input
@@ -60,6 +100,7 @@ const Appointments = () => {
                         label="First Name"
                         value={values.firstname}
                         onChange={handleInputChange}
+                        error={errors.firstname}
                         />
                     </Grid>
                     <Grid item xs={12} sm={6}>
@@ -93,18 +134,48 @@ const Appointments = () => {
                         label="Department"
                         value={values.doctor}
                         onChange={handleInputChange}
+                        error={errors.doctor}
                         options={employeeService.getDepartmentCollection()}
                         
                     />
                     </Grid>
                     <Grid item xs={12} sm={6}>
-                    <Date
-                         name="appointmentdate"
-                         label="Some Date"
-                         defaultValue="values.appointmentdate"
-                         
+                    <Controls.DatePicker
+                    name="appointmentdate"
+                     label="date"
+                     value={values.appointmentdate}
+                      onChange={handleInputChange}  
                     />
                     </Grid>
+                    <Grid item xs={12} sm={6}>
+                    <Controls.Input
+                    name="mobno"
+                     label="Mobile No"
+                     value={values.mobno}
+                      onChange={handleInputChange}  
+                      error={errors.mobno}
+                    />
+                    </Grid>
+                    <Grid item xs={12} sm={6}>
+                    <Controls.Input
+                    name="city"
+                     label="city"
+                     value={values.city}
+                      onChange={handleInputChange}  
+                    />
+                   
+                    </Grid>
+                    <Grid item xs={12} sm={6}>
+                    <div>
+                    <Controls.Button
+                            type="submit"
+                            text="Submit"
+                            
+                            />
+                    </div>
+                   
+                    </Grid>
+                    
                 </Grid>
             </Form>
         )

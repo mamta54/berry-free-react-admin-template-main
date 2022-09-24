@@ -2,10 +2,11 @@ import React from 'react'
 import { TextField } from '@mui/material';
 
 const Input = (props) => {
-    const {name,label,value,onChange} = props;
+    const {name,label,value,error=null,onChange} = props;
     return (
         <TextField
         fullWidth
+        
         variant='outlined'
         name={name}
         value={value}
@@ -15,7 +16,8 @@ const Input = (props) => {
             "& .MuiInputBase-root": {
                 height: "46px"
             }
-            }}                      
+            }} 
+         {...(error && {error:true,helperText:error})}                     
         />
     )
 }

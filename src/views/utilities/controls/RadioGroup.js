@@ -10,7 +10,7 @@ const RadioGroup = (props) => {
     aria-labelledby="demo-row-radio-buttons-group-label"
     onChange={onChange}
     >
-    <FormLabel id="demo-radio-buttons-group-label" sx={{marginRight:"10px",paddingTop:"9px",fontSize:"16px",color:"black"}}>{label} : </FormLabel>
+    <FormLabel id="demo-radio-buttons-group-label" sx={{marginRight:"10px",fontSize:"16px",color:"black"}}>{label} : </FormLabel>
     {
    items.map(
     item => (

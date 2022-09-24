@@ -2,8 +2,8 @@ import Input from "./Input";
 import RadioGroup from "./RadioGroup";
 import Select from "./Select";
 // import Checkbox from "./Checkbox";
-// import DatePicker from "./DatePicker";
-// import Button from "./Button";
+import DatePicker from "./DatePicker";
+import Button from "./Buttons";
 // import ActionButton from "./ActionButton";
 
 const Controls = {
@@ -11,8 +11,8 @@ const Controls = {
     RadioGroup,
     Select,
     // Checkbox,
-    // DatePicker,
-    // Button,
+    DatePicker,
+    Button,
     // ActionButton
 }
 
