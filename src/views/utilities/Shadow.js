@@ -31,7 +31,10 @@ const Shadow = () => {
                 if (target.value == "")
                     return items;
                 else
-                    return items.filter(x => x.firstname.toLowerCase().includes(target.value.toLowerCase()))
+                    return items.filter(x => x.firstname.toLowerCase().includes(target.value.toLowerCase())
+                     || x.lastname.toLowerCase().includes(target.value.toLowerCase())
+                     || x.mobno.includes(target.value)
+                     )
             }
         })
     }
