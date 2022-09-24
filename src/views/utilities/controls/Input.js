@@ -2,7 +2,7 @@ import React from 'react'
 import { TextField } from '@mui/material';
 
 const Input = (props) => {
-    const {name,label,value,error=null,onChange} = props;
+    const {name,label,value,error=null,onChange,...other} = props;
     return (
         <TextField
         fullWidth
@@ -16,7 +16,8 @@ const Input = (props) => {
             "& .MuiInputBase-root": {
                 height: "46px"
             }
-            }} 
+            }}
+            {...other} 
          {...(error && {error:true,helperText:error})}                     
         />
     )

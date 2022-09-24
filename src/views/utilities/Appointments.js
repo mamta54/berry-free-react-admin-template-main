@@ -19,7 +19,7 @@ const initialFormValues = {
     firstname:"",
     lastname:"",
     service:"",
-    doctor:"",
+    doctor:'',
     gender:"male",
     mobno:"",
     continue:"",

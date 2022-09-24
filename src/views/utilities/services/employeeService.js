@@ -31,7 +31,7 @@ export function getAllappointments() {
         let doctors = getDepartmentCollection();
         return appointments.map(x => ({
             ...x,
-            doctor: doctors[x.doctor - 1].title
+            doctorr: doctors[x.doctor-1].title
         }))
     
 }
