@@ -1,7 +1,7 @@
 import PropTypes from 'prop-types';
 
 // material-ui
-import { Box, Card, Grid, Typography } from '@mui/material';
+import { Box, Card, Divider, Grid, Paper, Toolbar, Typography } from '@mui/material';
 
 // project imports
 import SubCard from 'ui-component/cards/SubCard';
@@ -16,9 +16,13 @@ import Appointments from './Appointments';
 // ===============================|| UI COLOR ||=============================== //
 
 const UIColor = () => (
+    <>
     <MainCard title="Color Palette" secondary={<SecondaryAction link="https://next.material-ui.com/system/palette/" />}>
         <Appointments/>
+       
     </MainCard>
+     
+     </>
 );
 
 export default UIColor;

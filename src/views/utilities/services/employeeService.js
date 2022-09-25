@@ -3,12 +3,20 @@ const KEYS = {
     appointmentId: 'appointmentId'
 }
 
-export const getDepartmentCollection = () => ([
-    { id: '1', title: 'Development' },
-    { id: '2', title: 'Marketing' },
-    { id: '3', title: 'Accounting' },
-    { id: '4', title: 'HR' },
+export const getDoctorCollection = () => ([
+    { id: '1', title: 'Dr. Rakesh' },
+    { id: '2', title: 'Dr. Akshay' },
+    { id: '3', title: 'Dr. Snehal' },
+    { id: '4', title: 'Dr. Pooja' },
 ])
+
+export const getServiceCollection = () => ([
+    { id: '1', title: 'Service 1', price:'₹ 500' },
+    { id: '2', title: 'Service 2',  price:'₹ 400' },
+    { id: '3', title: 'Service 3',  price:'₹ 750' },
+    { id: '4', title: 'Service 4',  price:'₹ 800' },
+])
+
 
 export function insertAppointment(data){
     let appointments = getAllappointments();
@@ -28,10 +36,14 @@ export function getAllappointments() {
         localStorage.setItem(KEYS.appointments, JSON.stringify([]))
         let appointments = JSON.parse(localStorage.getItem(KEYS.appointments));
         //map departmentID to department title
-        let doctors = getDepartmentCollection();
+        let doctors = getDoctorCollection();
+        let services = getServiceCollection();
         return appointments.map(x => ({
             ...x,
-            doctorr: doctors[x.doctor-1].title
+            doctorr: doctors[x.doctor-1].title,
+            services: services[x.service - 1].title,
+            price: services[x.service - 1].price
+
         }))
     
 }

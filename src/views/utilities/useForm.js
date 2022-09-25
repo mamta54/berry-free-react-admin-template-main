@@ -11,7 +11,7 @@ export const useForm = (initialFormValues,validateOnChange=false,validate) => {
             ...values,
             [name]: value
         })
-        if(validateOnChange)
+        if(validateOnChange )
         validate({[name] : value})
 
     }

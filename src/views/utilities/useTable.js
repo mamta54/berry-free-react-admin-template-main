@@ -36,7 +36,7 @@ const useTable = (records,headCells,filterFn) => {
                 <TableRow>
                     {
                         headCells.map(headCell => (
-                            <TableCell key={headCell.id} sortDirection={orderBy === headCell.id ? order : false} align='center' style={{ minWidth: 170}}>
+                            <TableCell key={headCell.id} sortDirection={orderBy === headCell.id ? order : false} align='center' style={{ minWidth: headCell.minWidth}}>
                             {headCell.disableSorting ? headCell.label :
                                 <TableSortLabel
                                 active={orderBy === headCell.id}
