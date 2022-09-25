@@ -25,7 +25,7 @@ const headCells = [
 
 ]
 
-const Shadow = () => {
+const ViewAppointment = () => {
     
     const [records,setRecords] = useState(employeeService.getAllappointments())
     const [filterFn, setFilterFn] = useState({ fn: items => { return items; } })
@@ -40,6 +40,10 @@ const Shadow = () => {
                     return items.filter(x => x.firstname.toLowerCase().includes(target.value.toLowerCase())
                      || x.lastname.toLowerCase().includes(target.value.toLowerCase())
                      || x.mobno.includes(target.value)
+                     || x.services.toLowerCase().includes(target.value.toLowerCase())
+                     || x.price.includes(target.value)
+                     || x.doctorr.toLowerCase().includes(target.value.toLowerCase())
+                     || x.appointmentdate.includes(target.value)
                      )
             }
         })
@@ -54,7 +58,7 @@ const Shadow = () => {
     
     return (
         <>
-        <MainCard title="Basic Shadow" secondary={<SearchSection onChange={handleSearch}/>}>
+        <MainCard title="Appointments" secondary={<SearchSection onChange={handleSearch}/>}>
              <Paper sx={{ width: '100%' }}>
             <TbleContainer >
                 <TblHead/>
@@ -89,4 +93,4 @@ const Shadow = () => {
     )
 }
 
-export default Shadow
+export default ViewAppointment

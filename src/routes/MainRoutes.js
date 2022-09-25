@@ -8,9 +8,9 @@ import Loadable from 'ui-component/Loadable';
 const DashboardDefault = Loadable(lazy(() => import('views/dashboard/Default')));
 
 // utilities routing
-const UtilsTypography = Loadable(lazy(() => import('views/utilities/Typography')));
-const UtilsColor = Loadable(lazy(() => import('views/utilities/Color')));
-const UtilsShadow = Loadable(lazy(() => import('views/utilities/Shadow')));
+const UtilsPatient = Loadable(lazy(() => import('views/utilities/Patient')));
+const UtilsscheduleAppointment = Loadable(lazy(() => import('views/utilities/ScheduleAppointment')));
+const UtilsViewAppointment = Loadable(lazy(() => import('views/utilities/ViewAppointment')));
 const UtilsMaterialIcons = Loadable(lazy(() => import('views/utilities/MaterialIcons')));
 const UtilsTablerIcons = Loadable(lazy(() => import('views/utilities/TablerIcons')));
 
@@ -37,29 +37,29 @@ const MainRoutes = {
             ]
         },
         {
-            path: 'utils',
+            path: 'module',
             children: [
                 {
-                    path: 'util-typography',
-                    element: <UtilsTypography />
+                    path: 'module-Patient',
+                    element: <UtilsPatient/>
                 }
             ]
         },
         {
-            path: 'utils',
+            path: 'module',
             children: [
                 {
-                    path: 'util-color',
-                    element: <UtilsColor />
+                    path: 'module-scheduleAppointment',
+                    element: <UtilsscheduleAppointment />
                 }
             ]
         },
         {
-            path: 'utils',
+            path: 'module',
             children: [
                 {
-                    path: 'util-shadow',
-                    element: <UtilsShadow />
+                    path: 'module-viewAppointment',
+                    element: <UtilsViewAppointment />
                 }
             ]
         },

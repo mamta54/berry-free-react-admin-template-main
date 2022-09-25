@@ -12,50 +12,50 @@ const icons = {
 // ==============================|| UTILITIES MENU ITEMS ||============================== //
 
 const utilities = {
-    id: 'utilities',
-    title: 'Utilities',
+    id: 'module',
+   
     type: 'group',
     children: [
         {
-            id: 'util-typography',
-            title: 'Typography',
+            id: 'module-patient',
+            title: 'Patient',
             type: 'item',
-            url: '/utils/util-typography',
+            url: '/module/module-patient',
             icon: icons.IconTypography,
             breadcrumbs: false
         },
         {
-            id: 'util-color',
-            title: 'Color',
+            id: 'module-scheduleAppointment',
+            title: 'Schedule Appointment',
             type: 'item',
-            url: '/utils/util-color',
+            url: '/module/module-scheduleAppointment',
             icon: icons.IconPalette,
             breadcrumbs: false
         },
         {
-            id: 'util-shadow',
-            title: 'Shadow',
+            id: 'module-viewAppointment',
+            title: 'View Appointment',
             type: 'item',
-            url: '/utils/util-shadow',
+            url: '/module/module-viewAppointment',
             icon: icons.IconShadow,
             breadcrumbs: false
         },
         {
             id: 'icons',
-            title: 'Icons',
+            title: 'Lab Work',
             type: 'collapse',
             icon: icons.IconWindmill,
             children: [
                 {
                     id: 'tabler-icons',
-                    title: 'Tabler Icons',
+                    title: 'Lab Work1',
                     type: 'item',
                     url: '/icons/tabler-icons',
                     breadcrumbs: false
                 },
                 {
                     id: 'material-icons',
-                    title: 'Material Icons',
+                    title: 'Lab Work2',
                     type: 'item',
                     url: '/icons/material-icons',
                     breadcrumbs: false

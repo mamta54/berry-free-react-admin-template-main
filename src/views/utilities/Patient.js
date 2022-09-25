@@ -17,7 +17,7 @@ import FormControlLabel from '@mui/material/FormControlLabel';
 import FormLabel from '@mui/material/FormLabel';
 // ==============================|| TYPOGRAPHY ||============================== //
 
-const Typography = () => {
+const Patient = () => {
     const [Dates, setDates] = useState();
 
     const handleDateChange = (newValue) => {
@@ -440,4 +440,4 @@ const Typography = () => {
     )
 };
 
-export default Typography;
+export default Patient;

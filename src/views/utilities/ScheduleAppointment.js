@@ -15,9 +15,9 @@ import Appointments from './Appointments';
 
 // ===============================|| UI COLOR ||=============================== //
 
-const UIColor = () => (
+const ScheduleAppointment = () => (
     <>
-    <MainCard title="Color Palette" secondary={<SecondaryAction link="https://next.material-ui.com/system/palette/" />}>
+    <MainCard title="Schedule Appointment" secondary={<SecondaryAction link="https://next.material-ui.com/system/palette/" />}>
         <Appointments/>
        
     </MainCard>
@@ -25,4 +25,4 @@ const UIColor = () => (
      </>
 );
 
-export default UIColor;
+export default ScheduleAppointment;

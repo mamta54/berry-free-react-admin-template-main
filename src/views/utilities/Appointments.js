@@ -58,15 +58,15 @@ const Appointments = () => {
        let temp = {...errors}
       
        if('mobno' in fieldValues)
-            temp.mobno = (/^(?:(?:\+|0{0,2})91(\s*[\-]\s*)?|[0]?)?[6789]\d{9}$/).test(fieldValues.mobno) && email.includes('.') ? "": "Invalid Number!"
+            temp.mobno = (/^(?:(?:\+|0{0,2})91(\s*[\-]\s*)?|[0]?)?[6789]\d{9}$/).test(fieldValues.mobno)  ? "": "Invalid Number!"
        if('email1' in fieldValues)
-            temp.email1 = ( /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/).test(fieldValues.email1) ? "": "Invalid Email!"
+            temp.email1 = ( /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/).test(fieldValues.email1) && fieldValues.email1.includes('.') || fieldValues.email1.length == 0? "": "Invalid Email!"
        if ('doctor' in fieldValues)
             temp.doctor = fieldValues.doctor.length != 0 ? "" : "Select the doctor!"
        if ('service' in fieldValues)
             temp.service = fieldValues.service.length != 0 ? "" : "Select the service!"
        if ('pincode' in fieldValues)
-            temp.pincode = fieldValues.pincode.length == 6 ? "" : "length should be 6 only!"
+            temp.pincode = fieldValues.pincode.length == 6 || fieldValues.pincode.length ==0 ? "" : "length should be 6 only!"
      
         setErrors({
             ...temp
@@ -333,7 +333,6 @@ const Appointments = () => {
                     value={values.email1}
                     label="Email1"
                     error={errors.email1}
-
                     onChange={handleInputChange}
                 />
                 </Grid>
