@@ -11,17 +11,14 @@ import { Search } from '@mui/icons-material';
 import SearchSection from './SearchSection';
 
 const headCells = [
-    {id:'sr', label:'Sr No.',minWidth: 30,},
-    {id:'caseno', label:'Case No.',minWidth: 40,},
-    {id:'firstname', label:'First Name',minWidth: 100,},
-    {id:'lastname', label:'Last Name',minWidth: 100,},
-    {id:'service', label:'Service',minWidth: 100,},
+    {id:'sr', label:'Sr No.',minWidth: 120,},
+    {id:'caseno', label:'Case No.',minWidth: 120,},
+    {id:'fullname', label:'Full Name',minWidth: 170,},
+    {id:'service', label:'Service',minWidth: 170,},
     {id:'price', label:'Price',minWidth: 70,},
-    {id:'doctor', label:'Doctor Name',minWidth: 100,},
-    {id:'appointmentdate', label:'Appoinemnt Date',minWidth: 90,},
+    {id:'doctor', label:'Doctor Name',minWidth: 170,},
+    {id:'appointmentdate', label:'Appoinemnt Date',minWidth: 150,},
     {id:'time', label:'Time',minWidth: 70,},
-    {id:'mobno', label:'Mobile No.',minWidth: 100,},
-    {id:'continue', label:'Continue',minWidth: 50,},
 
 ]
 
@@ -69,15 +66,12 @@ const ViewAppointment = () => {
                             <TableRow hover role="checkbox" tabIndex={-1} key={item.id}>
                                 <TableCell  align='center' >{item.id}</TableCell>
                                 <TableCell  align='center'>{item.caseno}</TableCell>
-                                <TableCell  align='center'>{item.firstname}</TableCell>
-                                <TableCell align='center'>{item.lastname}</TableCell>
+                                <TableCell  align='center'>{item.firstname+" "+item.lastname}</TableCell>
                                 <TableCell align='center'>{item.services}</TableCell>
                                 <TableCell align='center'>{item.price}</TableCell>
                                 <TableCell align='center'>{item.doctorr}</TableCell>
                                 <TableCell align='center'>{item.appointmentdate}</TableCell>
                                 <TableCell align='center'>{item.time}</TableCell>
-                                <TableCell align='center'>{item.mobno}</TableCell>  
-                                <TableCell align='center'>{item.continue}</TableCell>
                             </TableRow>
                         ))
                     }

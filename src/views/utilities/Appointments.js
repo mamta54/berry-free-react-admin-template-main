@@ -5,7 +5,7 @@ import * as employeeService from "./services/employeeService";
 import Controls from './controls/Controls';
 import Select from './controls/Select';
 // import Date from './controls/Date';
-
+import Time from './controls/Time';
 import { Divider, Paper, Toolbar, Typography } from '@mui/material';
 
 
@@ -42,6 +42,8 @@ const initialFormValues = {
     referredBy:""
 
 }
+
+
 
 const genderItems =[
     { id: 'male', title: 'Male' },
@@ -178,13 +180,16 @@ const Appointments = () => {
                     />
                     </Grid>
                     <Grid item xs={12} sm={6}>
-                        <Controls.Input
-                        name='city'
-                        value={values.city}
-                        label="City"
+                    <Time
+                        name="time"
+                        label="Time"
+                        value={values.time}
                         onChange={handleInputChange}
+                        // error={errors.doctor}
                         required
-                        />
+                        options={employeeService.getTimeCollection()}
+                        
+                    />
                     </Grid>
                     <Grid item xs={12} sm={6}>
                     <Controls.RadioGroup

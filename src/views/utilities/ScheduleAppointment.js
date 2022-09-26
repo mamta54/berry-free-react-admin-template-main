@@ -17,7 +17,7 @@ import Appointments from './Appointments';
 
 const ScheduleAppointment = () => (
     <>
-    <MainCard title="Schedule Appointment" secondary={<SecondaryAction link="https://next.material-ui.com/system/palette/" />}>
+    <MainCard title="Schedule Appointment" >
         <Appointments/>
        
     </MainCard>

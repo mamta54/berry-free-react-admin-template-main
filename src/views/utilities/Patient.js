@@ -1,443 +1,97 @@
-import { Grid, Link,Divider } from '@mui/material';
-import MuiTypography from '@mui/material/Typography';
-import { useState,React } from 'react';
-// project imports
-import SubCard from 'ui-component/cards/SubCard';
-import MainCard from 'ui-component/cards/MainCard';
+import React from 'react'
+import MainCard from 'ui-component/cards/MainCard'
 import SecondaryAction from 'ui-component/cards/CardSecondaryAction';
-import { gridSpacing } from 'store/constant';
-import TextField from '@mui/material/TextField';
-import {FormControl} from '@mui/material';
-import InputLabel from '@mui/material/InputLabel';
-import MenuItem from '@mui/material/MenuItem';
-import Select from '@mui/material/Select';
-import Radio from '@mui/material/Radio';
-import RadioGroup from '@mui/material/RadioGroup';
-import FormControlLabel from '@mui/material/FormControlLabel';
-import FormLabel from '@mui/material/FormLabel';
-// ==============================|| TYPOGRAPHY ||============================== //
+import useTable from './useTable';
+import { InputAdornment, TableBody, TableCell, TableRow, Toolbar, Typography } from '@mui/material';
+import * as employeeService from "./services/employeeService";
+import { useState } from 'react';
+import Paper from '@mui/material/Paper';
+import Controls from './controls/Controls';
+import { Search } from '@mui/icons-material';
+import SearchSection from './SearchSection';
+
+const headCells = [
+    {id:'sr', label:'Sr No.',minWidth: 120,},
+    {id:'caseno', label:'Case No.',minWidth: 120,},
+    {id:'firstname', label:'First Name',minWidth: 170,},
+    {id:'lastname', label:'Last Name',minWidth: 170,},
+    {id:'mobno', label:'Mobile No.',minWidth: 170,},
+    {id:'email1', label:'Email 1',minWidth: 170,},
+    {id:'email2', label:'Email 2',minWidth: 170,},
+    {id:'gender', label:'Gender',minWidth: 80,},
+    {id:'dob', label:'DOB',minWidth: 80,},
+    {id:'age', label:'Age',minWidth: 50,},
+    {id:'action', label:'',minWidth: 80,},
+
+
+
+]
 
 const Patient = () => {
-    const [Dates, setDates] = useState();
+    
+    const [records,setRecords] = useState(employeeService.getAllappointments())
+    const [filterFn, setFilterFn] = useState({ fn: items => { return items; } })
+    const [total,setTotal] = useState(0)
+    const handleSearch = e => {
+        let target = e.target;
+        setFilterFn({
+            fn: items => {
+                if (target.value == "")
+                    return items;
+                else
+                    return items.filter(x => x.firstname.toLowerCase().includes(target.value.toLowerCase())
+                     || x.lastname.toLowerCase().includes(target.value.toLowerCase())
+                     || x.mobno.includes(target.value)
+                  
+                
+                  
+                     )
+            }
+        })
+    }
+    const  {
+        TbleContainer,
+        TblHead,
+       TblPaging,
+        recordsAfterPagingAndSorting
+    } = useTable(records,headCells,filterFn);
 
-    const handleDateChange = (newValue) => {
-      setDates(newValue);
-    };
-    const [Doctor, setDoctor] = useState("");
-    const [Service, setService] = useState("");
-    const [Title, setTitle] = useState("");
-    const [Occupation, setOccupation] = useState("");
-    const m = (new Date().getMonth()+1) <= 9 ? "0"+(new Date().getMonth()+1) : (new Date().getMonth()+1);
-    const d = new Date().getDate();
-    const y = new Date().getFullYear();
-    const todayDate = y+"-"+m+"-"+d;
-
-    const values = {
-        someDate: todayDate,
-        
-      };
-      var services = {
-        Service1: 450,
-        Service2: 230,
-        Service3: 500,
-        Service4 : 560
-      };
-    const [Dob,setDob] = useState();
+    
     return (
-       <FormControl>
-
-        <MainCard title="Basic Typography" secondary={<SecondaryAction link="https://next.material-ui.com/system/typography/" />}>
-       <Grid container spacing={2}>
-            <Grid item xs={12} sm={6}>
-            <TextField fullWidth label="Case No." id="fullWidth" sx={{
-
-
-"& .MuiInputBase-root": {
-    height: "46px"
-}
-}}/>
-            </Grid>
-            <Grid item xs={12} sm={6}>
-            <TextField
-            fullWidth
-        name="someDate"
-        label="Some Date"
-        InputLabelProps={{ shrink: true, required: true }}
-        type="date"
-        defaultValue={values.someDate}
-        sx={{
-
-
-            "& .MuiInputBase-root": {
-                height: "46px"
-            }
-            }}
-      />
-           
-            </Grid>
-            <Grid item xs={12} sm={6}>
-            <TextField fullWidth label="FirstName" id="fullWidth" sx={{
-
-
-"& .MuiInputBase-root": {
-    height: "46px"
-}
-}}/>
-           
-            </Grid>
-
-            <Grid item xs={12} sm={6}>
-
-            <TextField fullWidth label="LastName" id="fullWidth" sx={{
-
-
-"& .MuiInputBase-root": {
-    height: "46px"
-}
-}}/>
-            
-            </Grid>
-            <Grid item xs={12} sm={6}>
-            <TextField
-          style={{ width: "100%" }}
-          variant="outlined"
-          value={Doctor}
-          onChange={(e) => setDoctor(e.target.value)}
-          select
-          label="Select Service"
-          sx={{
-
-
-            "& .MuiInputBase-root": {
-                height: "46px"
-            }
-            }}
-        >
-         {Object.keys(services).map(key => (
-          <MenuItem key={key} value={key}>
-        {key+" "+services[key]}
-          </MenuItem>
+        <>
+        <MainCard title="Patients" secondary={<SearchSection onChange={handleSearch}/>}>
+             <Paper sx={{ width: '100%' }}>
+            <TbleContainer >
+                <TblHead/>
+                <TableBody>
+                    {
+                        recordsAfterPagingAndSorting().map(item => (
+                            
+                            <TableRow hover role="checkbox" tabIndex={-1} key={item.id}>
+                                <TableCell  align='center' >{item.id}</TableCell>
+                                <TableCell  align='center'>{item.caseno}</TableCell>
+                                <TableCell  align='center'>{item.firstname}</TableCell>
+                                <TableCell align='center'>{item.lastname}</TableCell>
+                                <TableCell align='center'>{item.mobno}</TableCell>
+                                <TableCell align='center'>{item.email1}</TableCell>
+                                <TableCell align='center'>{item.email2}</TableCell>
+                                <TableCell align='center'>{item.gender}</TableCell>
+                                <TableCell align='center'>{item.dob}</TableCell>
+                                <TableCell align='center'>{item.age}</TableCell>  
+                                <TableCell align='center'>{item.continue}</TableCell>
+                            </TableRow>
+                        ))
+                    }
+                </TableBody>
+            </TbleContainer>
+            <TblPaging/>
+            </Paper>
+        </MainCard>
         
-         ))}
-        </TextField>
-            </Grid>
-            <Grid item xs={12} sm={6}>
-            <TextField
-          style={{ width: "100%" }}
-          variant="outlined"
-          value={Doctor}
-          onChange={(e) => setDoctor(e.target.value)}
-          select
-          label="Select Doctor"
-          sx={{
-
-
-            "& .MuiInputBase-root": {
-                height: "46px"
-            }
-            }}
-        >
-          <MenuItem key={1} value="Dr. Akshay">
-          Dr. Akshay
-          </MenuItem>
-          <MenuItem key={2} value="Dr. Rakesh">
-          Dr. Rakesh
-          </MenuItem>
-          <MenuItem key={2} value="Dr. Sonal">
-          Dr. Sonal
-          </MenuItem>
-        </TextField>
-            </Grid>
-            <Grid item xs={12} sm={6}>
-            <TextField fullWidth label="LastName" id="fullWidth" sx={{
-
-
-"& .MuiInputBase-root": {
-    height: "46px"
-}
-}}/>
-            </Grid>
-            <Grid item xs={12} sm={6}>
-                
-            <Grid container spacing={2}>
-            <Grid item xs={12} sm={6}>
-            <TextField
-            fullWidth
-        name="someDate"
-        label="Date of Birth"
-        InputLabelProps={{ shrink: true, required: true }}
-        type="date"
-        sx={{
-
-
-            "& .MuiInputBase-root": {
-                height: "46px"
-            }
-            }}
-      />
-            </Grid>
-            <Grid item xs={12} sm={6}>
-            <TextField fullWidth label="Age" id="fullWidth" sx={{
-
-
-"& .MuiInputBase-root": {
-    height: "46px"
-}
-}}/>
-            </Grid>
-            </Grid>
-
-            </Grid>
-            
-           
-            
-           
-            <Grid item xs={12} sm={6}>
-    <RadioGroup
-        row
-        // aria-labelledby="demo-row-radio-buttons-group-label"
-        name="row-radio-buttons-group"
-        
-      >
-         <FormLabel id="demo-radio-buttons-group-label" sx={{marginRight:"10px",paddingTop:"9px",fontSize:"16px",color:"black"}}>Gender : </FormLabel>
-        <FormControlLabel value="female" control={<Radio />} label="Female" />
-        <FormControlLabel value="male" control={<Radio />} label="Male" />
-        <FormControlLabel value="other" control={<Radio />} label="Other" />
-        
-      </RadioGroup>
-            </Grid>
-      
-           
-            
-            <Grid item xs={12} sm={6}>
-            <TextField
-          style={{ width: "100%" }}
-          variant="outlined"
-          value={Occupation}
-          onChange={(e) => setOccupation(e.target.value)}
-          select
-          sx={{
-
-
-            "& .MuiInputBase-root": {
-                height: "46px"
-            }
-            }}
-          label="Select Occupation"
-        >
-          <MenuItem key={1} value="Farmer">
-       Farmer
-          </MenuItem>
-          <MenuItem key={2} value="Doctor">
-         Doctor
-          </MenuItem>
-          <MenuItem key={2} value="Engineer">
-          Engineer
-          </MenuItem>
-        </TextField>
-            </Grid>
-        </Grid>
-        {/* <Divider sx={{marginTop:"15px",marginBottom:"15px"}}/> */}
-        
-    
-    </MainCard>
-    <MainCard title="Basic Typography" secondary={<SecondaryAction link="https://next.material-ui.com/system/typography/" />}>
-       <Grid container spacing={2}>
-            <Grid item xs={12} sm={6}>
-            <TextField fullWidth label="Case No." id="fullWidth" sx={{
-
-
-"& .MuiInputBase-root": {
-    height: "46px"
-}
-}}/>
-            </Grid>
-            <Grid item xs={12} sm={6}>
-            <TextField fullWidth label="Reference No." id="fullWidth" sx={{
-
-
-"& .MuiInputBase-root": {
-    height: "46px"
-}
-}}/>
-            </Grid>
-            <Grid item xs={12} sm={6}>
-            <TextField
-            fullWidth
-        name="someDate"
-        label="Some Date"
-        InputLabelProps={{ shrink: true, required: true }}
-        type="date"
-        defaultValue={values.someDate}
-        sx={{
-
-
-            "& .MuiInputBase-root": {
-                height: "46px"
-            }
-            }}
-      />
-           
-            </Grid>
-            <Grid item xs={12} sm={6}>
-            <TextField
-          style={{ width: "100%" }}
-          variant="outlined"
-          value={Doctor}
-          onChange={(e) => setDoctor(e.target.value)}
-          select
-          label="Select Doctor"
-          sx={{
-
-
-            "& .MuiInputBase-root": {
-                height: "46px"
-            }
-            }}
-        >
-          <MenuItem key={1} value="Dr. Akshay">
-          Dr. Akshay
-          </MenuItem>
-          <MenuItem key={2} value="Dr. Rakesh">
-          Dr. Rakesh
-          </MenuItem>
-          <MenuItem key={2} value="Dr. Sonal">
-          Dr. Sonal
-          </MenuItem>
-        </TextField>
-            </Grid>
-            <Grid item xs={12} sm={6}>
-            <TextField
-          style={{ width: "100%" }}
-          variant="outlined"
-          value={Title}
-          onChange={(e) => setTitle(e.target.value)}
-          select
-          sx={{
-
-
-            "& .MuiInputBase-root": {
-                height: "46px"
-            }
-            }}
-          label="Select Title"
-        >
-          <MenuItem key={1} value="Mr.">
-         Mr.
-          </MenuItem>
-          <MenuItem key={2} value="Mrs.">
-          Mrs.
-          </MenuItem>
-          <MenuItem key={2} value="Miss">
-          Miss
-          </MenuItem>
-        </TextField>
-            </Grid>
-            <Grid item xs={12} sm={6}>
-            <TextField fullWidth label="FirstName" id="fullWidth" sx={{
-
-
-"& .MuiInputBase-root": {
-    height: "46px"
-}
-}}/>
-            </Grid>
-            <Grid item xs={12} sm={6}>
-            <TextField fullWidth label="LastName" id="fullWidth" sx={{
-
-
-"& .MuiInputBase-root": {
-    height: "46px"
-}
-}}/>
-            </Grid>
-            <Grid item xs={12} sm={6}>
-                
-            <Grid container spacing={2}>
-            <Grid item xs={12} sm={6}>
-            <TextField
-            fullWidth
-        name="someDate"
-        label="Date of Birth"
-        InputLabelProps={{ shrink: true, required: true }}
-        type="date"
-        sx={{
-
-
-            "& .MuiInputBase-root": {
-                height: "46px"
-            }
-            }}
-      />
-            </Grid>
-            <Grid item xs={12} sm={6}>
-            <TextField fullWidth label="Age" id="fullWidth" sx={{
-
-
-"& .MuiInputBase-root": {
-    height: "46px"
-}
-}}/>
-            </Grid>
-            </Grid>
-
-            </Grid>
-            
-           
-            
-           
-            <Grid item xs={12} sm={6}>
-    <RadioGroup
-        row
-        // aria-labelledby="demo-row-radio-buttons-group-label"
-        name="row-radio-buttons-group"
-        
-      >
-         <FormLabel id="demo-radio-buttons-group-label" sx={{marginRight:"10px",paddingTop:"9px",fontSize:"16px",color:"black"}}>Gender : </FormLabel>
-        <FormControlLabel value="female" control={<Radio />} label="Female" />
-        <FormControlLabel value="male" control={<Radio />} label="Male" />
-        <FormControlLabel value="other" control={<Radio />} label="Other" />
-        
-      </RadioGroup>
-            </Grid>
-      
-           
-            
-            <Grid item xs={12} sm={6}>
-            <TextField
-          style={{ width: "100%" }}
-          variant="outlined"
-          value={Occupation}
-          onChange={(e) => setOccupation(e.target.value)}
-          select
-          sx={{
-
-
-            "& .MuiInputBase-root": {
-                height: "46px"
-            }
-            }}
-          label="Select Occupation"
-        >
-          <MenuItem key={1} value="Farmer">
-       Farmer
-          </MenuItem>
-          <MenuItem key={2} value="Doctor">
-         Doctor
-          </MenuItem>
-          <MenuItem key={2} value="Engineer">
-          Engineer
-          </MenuItem>
-        </TextField>
-            </Grid>
-        </Grid>
-        {/* <Divider sx={{marginTop:"15px",marginBottom:"15px"}}/> */}
-        
-    
-    </MainCard>
-
-    </FormControl>
+         
+       
+        </>
     )
-};
+}
 
-export default Patient;
+export default Patient

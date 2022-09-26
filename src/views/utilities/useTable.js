@@ -42,7 +42,7 @@ const useTable = (records,headCells,filterFn) => {
                                 active={orderBy === headCell.id}
                                 direction={orderBy === headCell.id ? order : 'asc'}
                                 onClick={() => { handleSortRequest(headCell.id) }}>
-                                {headCell.label}
+                                {headCell.label.toUpperCase()}
                                 </TableSortLabel>
                             }</TableCell>
                         ))

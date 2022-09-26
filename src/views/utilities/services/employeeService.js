@@ -9,7 +9,22 @@ export const getDoctorCollection = () => ([
     { id: '3', title: 'Dr. Snehal' },
     { id: '4', title: 'Dr. Pooja' },
 ])
+export const getTimeCollection = () => ([
+    { id: '12:00 am', title: '12:00 am' },
+    { id: '12:15 am', title: '12:15 am' },
+    { id: '12:30 am', title: '12:30 am' },
+    { id: '12:35 am', title: '12:35 am' },
+    { id: 'male', title: 'Male' },
+    { id: 'male', title: 'Male' },
+    { id: 'male', title: 'Male' },
+    { id: 'male', title: 'Male' },
+    { id: 'male', title: 'Male' },
+    { id: 'male', title: 'Male' },
+    { id: 'male', title: 'Male' },
+    { id: 'male', title: 'Male' },
+    { id: 'male', title: 'Male' },
 
+])
 export const getServiceCollection = () => ([
     { id: '1', title: 'Service 1', price:'₹ 500' },
     { id: '2', title: 'Service 2',  price:'₹ 400' },

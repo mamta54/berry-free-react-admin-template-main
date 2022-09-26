@@ -3,7 +3,7 @@ import TextField from '@mui/material/TextField';
 import MenuItem from '@mui/material/MenuItem';
 import Grid from '@mui/material/Grid';
 
-const Select = (props) => {
+const Time = (props) => {
     const { name, label, value,error=null, onChange, options } = props;
   return (
     <TextField
@@ -23,14 +23,15 @@ const Select = (props) => {
             }
             }}
         >
-          <MenuItem value="">None</MenuItem>
+ <MenuItem value="">None</MenuItem>
                 {
                     options.map(
                         item => (<MenuItem key={item.id} value={item.id}>{item.price ? item.title+" "+item.price : item.title }</MenuItem>)
                     )
                 }
+               
         </TextField>
   )
 }
 
-export default Select
+export default Time
