@@ -32,7 +32,7 @@ const Header = ({ handleLeftDrawerToggle }) => {
             >
                 <Box component="span" sx={{ display: { xs: 'none', md: 'block' }, flexGrow: 1 }}>
                     {/* <LogoSection /> */}
-                    <Typography sx={{fontSize:"20px",color:"purple",marginLeft:"10px"}}>
+                    <Typography sx={{fontSize:"30px",color:"#5e35b1",marginLeft:"10px"}}>
                         Snehi clinic
                     </Typography>
                 </Box>

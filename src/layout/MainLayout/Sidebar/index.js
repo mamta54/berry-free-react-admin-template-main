@@ -13,7 +13,7 @@ import MenuList from './MenuList';
 import LogoSection from '../LogoSection';
 import MenuCard from './MenuCard';
 import { drawerWidth } from 'store/constant';
-
+import {Typography} from '@mui/material';
 // ==============================|| SIDEBAR DRAWER ||============================== //
 
 const Sidebar = ({ drawerOpen, drawerToggle, window }) => {
@@ -24,7 +24,12 @@ const Sidebar = ({ drawerOpen, drawerToggle, window }) => {
         <>
             <Box sx={{ display: { xs: 'block', md: 'none' } }}>
                 <Box sx={{ display: 'flex', p: 2, mx: 'auto' }}>
-                    <LogoSection />
+                    {/* <LogoSection /> */}
+                   
+                    <Typography sx={{fontSize:"30px",color:"#5e35b1",marginLeft:"10px"}}>
+                        Snehi clinic
+                    </Typography>
+                
                 </Box>
             </Box>
             <BrowserView>

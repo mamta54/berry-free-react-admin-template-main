@@ -261,6 +261,23 @@ const Appointments = () => {
                 </Grid>
                 <Grid item xs={12} sm={6}>
                 <Controls.Input
+                    name='email1'
+                    value={values.email1}
+                    label="Email1"
+                    error={errors.email1}
+                    onChange={handleInputChange}
+                />
+                </Grid>
+                <Grid item xs={12} sm={6}>
+                <Controls.Input
+                    name='email2'
+                    value={values.email2}
+                    label="Email2"
+                    onChange={handleInputChange}
+                />
+                </Grid>
+                <Grid item xs={12} sm={6}>
+                <Controls.Input
                     name='nationality'
                     value={values.nationality}
                     label="Nationality"
@@ -332,23 +349,7 @@ const Appointments = () => {
                     error={errors.pincode}
                 />
                 </Grid>
-                <Grid item xs={12} sm={6}>
-                <Controls.Input
-                    name='email1'
-                    value={values.email1}
-                    label="Email1"
-                    error={errors.email1}
-                    onChange={handleInputChange}
-                />
-                </Grid>
-                <Grid item xs={12} sm={6}>
-                <Controls.Input
-                    name='email2'
-                    value={values.email2}
-                    label="Email2"
-                    onChange={handleInputChange}
-                />
-                </Grid>
+                
                 <Grid item xs={12} sm={6}>
                     <div>
                     <Controls.Button

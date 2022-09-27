@@ -1,8 +1,8 @@
 // assets
-import { IconBrandChrome, IconHelp } from '@tabler/icons';
+import { IconBrandChrome, IconHelp,IconClipboardCheck,IconHeadset ,IconChartBar,IconUserCircle,IconBuildingWarehouse} from '@tabler/icons';
 
 // constant
-const icons = { IconBrandChrome, IconHelp };
+const icons = { IconBrandChrome, IconHelp,IconClipboardCheck ,IconHeadset,IconChartBar,IconUserCircle,IconBuildingWarehouse};
 
 // ==============================|| SAMPLE PAGE & DOCUMENTATION MENU ITEMS ||============================== //
 
@@ -11,22 +11,54 @@ const other = {
     type: 'group',
     children: [
         {
-            id: 'sample-page',
-            title: 'Communication',
+            id: 'lab-work',
+            title: 'Lab Work',
             type: 'item',
-            url: '/sample-page',
-            icon: icons.IconBrandChrome,
+            url: '/labwork',
+            icon: icons.IconClipboardCheck,
             breadcrumbs: false
         },
         {
-            id: 'documentation',
-            title: 'Documents',
+            id: 'Communication',
+            title: 'Communication',
             type: 'item',
-            url: 'https://codedthemes.gitbook.io/berry/',
+            url: '/Communication',
+            icon: icons.IconHeadset,
+            breadcrumbs: false
+        },
+        {
+            id: 'report',
+            title: 'Report',
+            type: 'item',
+            url: '/report',
+            icon: icons.IconChartBar,
+            breadcrumbs: false
+        },
+        {
+            id: 'administrator',
+            title: 'Administrator',
+            type: 'item',
+            url: '/administrator',
+            icon: icons.IconUserCircle,
+            breadcrumbs: false
+        },
+        {
+            id: 'inventory',
+            title: 'Inventory',
+            type: 'item',
+            url: '/inventory',
+            icon: icons.IconBuildingWarehouse,
+            breadcrumbs: false
+        },
+        {
+            id: 'help',
+            title: 'Help',
+            type: 'item',
+            url: '/help',
             icon: icons.IconHelp,
-            external: true,
-            target: true
-        }
+            breadcrumbs: false
+        },
+        
     ]
 };
 

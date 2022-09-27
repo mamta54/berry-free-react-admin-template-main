@@ -14,8 +14,8 @@ const headCells = [
     {id:'sr', label:'Sr No.',minWidth: 120,},
     {id:'caseno', label:'Case No.',minWidth: 120,},
     {id:'fullname', label:'Full Name',minWidth: 170,},
+    {id:'mobno', label:'Mobile No.',minWidth: 70,},
     {id:'service', label:'Service',minWidth: 170,},
-    {id:'price', label:'Price',minWidth: 70,},
     {id:'doctor', label:'Doctor Name',minWidth: 170,},
     {id:'appointmentdate', label:'Appoinemnt Date',minWidth: 150,},
     {id:'time', label:'Time',minWidth: 70,},
@@ -41,6 +41,7 @@ const ViewAppointment = () => {
                      || x.price.includes(target.value)
                      || x.doctorr.toLowerCase().includes(target.value.toLowerCase())
                      || x.appointmentdate.includes(target.value)
+                     || x.mobno.includes(target.value)
                      )
             }
         })
@@ -67,8 +68,8 @@ const ViewAppointment = () => {
                                 <TableCell  align='center' >{item.id}</TableCell>
                                 <TableCell  align='center'>{item.caseno}</TableCell>
                                 <TableCell  align='center'>{item.firstname+" "+item.lastname}</TableCell>
+                                <TableCell align='center'>{item.mobno}</TableCell>
                                 <TableCell align='center'>{item.services}</TableCell>
-                                <TableCell align='center'>{item.price}</TableCell>
                                 <TableCell align='center'>{item.doctorr}</TableCell>
                                 <TableCell align='center'>{item.appointmentdate}</TableCell>
                                 <TableCell align='center'>{item.time}</TableCell>

@@ -74,11 +74,7 @@ const MobileSearch = ({ value, setValue, popupState,handleSearch }) => {
             }
             endAdornment={
                 <InputAdornment position="end">
-                    <ButtonBase sx={{ borderRadius: '12px' }}>
-                        <HeaderAvatarStyle variant="rounded">
-                            <IconAdjustmentsHorizontal stroke={1.5} size="1.3rem" />
-                        </HeaderAvatarStyle>
-                    </ButtonBase>
+                    
                     <Box sx={{ ml: 2 }}>
                         <ButtonBase sx={{ borderRadius: '12px' }}>
                             <Avatar

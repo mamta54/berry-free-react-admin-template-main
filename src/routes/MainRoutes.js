@@ -82,7 +82,28 @@ const MainRoutes = {
             ]
         },
         {
-            path: 'sample-page',
+            path: 'labwork',
+            element: <SamplePage />
+        },
+        {
+            path: 'Communication',
+            element: <SamplePage />
+        },
+       
+        {
+            path: 'report',
+            element: <SamplePage />
+        },
+        {
+            path: 'administrator',
+            element: <SamplePage />
+        },
+        {
+            path: 'inventory',
+            element: <SamplePage />
+        },
+        {
+            path: 'help',
             element: <SamplePage />
         }
     ]

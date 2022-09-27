@@ -1,12 +1,16 @@
 // assets
-import { IconTypography, IconPalette, IconShadow, IconWindmill } from '@tabler/icons';
+import { IconTypography, IconPalette, IconShadow, IconWindmill ,IconUser,IconUsers,IconAddressBook,IconBook} from '@tabler/icons';
 
 // constant
 const icons = {
     IconTypography,
     IconPalette,
     IconShadow,
-    IconWindmill
+    IconWindmill,
+    IconUser,
+    IconUsers,
+    IconAddressBook,
+    IconBook
 };
 
 // ==============================|| UTILITIES MENU ITEMS ||============================== //
@@ -21,7 +25,7 @@ const utilities = {
             title: 'Patient',
             type: 'item',
             url: '/module/module-patient',
-            icon: icons.IconTypography,
+            icon: icons.IconUser,
             breadcrumbs: false
         },
         {
@@ -29,7 +33,7 @@ const utilities = {
             title: 'Schedule Appointment',
             type: 'item',
             url: '/module/module-scheduleAppointment',
-            icon: icons.IconPalette,
+            icon: icons.IconAddressBook,
             breadcrumbs: false
         },
         {
@@ -37,25 +41,25 @@ const utilities = {
             title: 'View Appointment',
             type: 'item',
             url: '/module/module-viewAppointment',
-            icon: icons.IconShadow,
+            icon: icons.IconBook,
             breadcrumbs: false
         },
         {
-            id: 'icons',
-            title: 'Lab Work',
+            id: 'account',
+            title: 'Accounts',
             type: 'collapse',
-            icon: icons.IconWindmill,
+            icon: icons.IconUsers,
             children: [
                 {
-                    id: 'tabler-icons',
-                    title: 'Lab Work1',
+                    id: 'account1',
+                    title: 'Account1',
                     type: 'item',
                     url: '/icons/tabler-icons',
                     breadcrumbs: false
                 },
                 {
-                    id: 'material-icons',
-                    title: 'Lab Work2',
+                    id: 'account2',
+                    title: 'Account2',
                     type: 'item',
                     url: '/icons/material-icons',
                     breadcrumbs: false
