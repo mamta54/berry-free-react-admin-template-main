@@ -187,7 +187,7 @@ const Appointments = () => {
                         onChange={handleInputChange}
                         // error={errors.doctor}
                         required
-                        options={employeeService.getTimeCollection()}
+                        options={employeeService.getServiceCollection()}
                         
                     />
                     </Grid>

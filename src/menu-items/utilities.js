@@ -45,6 +45,14 @@ const utilities = {
             breadcrumbs: false
         },
         {
+            id: 'module-appointmentcalender',
+            title: 'View Calender',
+            type: 'item',
+            url: '/module/module-appointmentcalender',
+            icon: icons.IconBook,
+            breadcrumbs: false
+        },
+        {
             id: 'account',
             title: 'Accounts',
             type: 'collapse',

@@ -13,7 +13,7 @@ const UtilsscheduleAppointment = Loadable(lazy(() => import('views/utilities/Sch
 const UtilsViewAppointment = Loadable(lazy(() => import('views/utilities/ViewAppointment')));
 const UtilsMaterialIcons = Loadable(lazy(() => import('views/utilities/MaterialIcons')));
 const UtilsTablerIcons = Loadable(lazy(() => import('views/utilities/TablerIcons')));
-
+const Schedule = Loadable(lazy(() => import('views/utilities/Schedule')));
 // sample page routing
 const SamplePage = Loadable(lazy(() => import('views/sample-page')));
 
@@ -64,11 +64,20 @@ const MainRoutes = {
             ]
         },
         {
+            path: 'module',
+            children: [
+                {
+                    path: 'module-appointmentcalender',
+                    element: <Schedule />
+                }
+            ]
+        },
+        {
             path: 'icons',
             children: [
                 {
                     path: 'tabler-icons',
-                    element: <UtilsTablerIcons />
+                    element: <Schedule />
                 }
             ]
         },
@@ -81,6 +90,7 @@ const MainRoutes = {
                 }
             ]
         },
+        
         {
             path: 'labwork',
             element: <SamplePage />

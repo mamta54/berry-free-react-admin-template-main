@@ -2,6 +2,7 @@ import React from 'react'
 import TextField from '@mui/material/TextField';
 import MenuItem from '@mui/material/MenuItem';
 import Grid from '@mui/material/Grid';
+import { Box } from '@mui/system';
 
 const Time = (props) => {
     const { name, label, value,error=null, onChange, options } = props;
@@ -23,13 +24,17 @@ const Time = (props) => {
             }
             }}
         >
- <MenuItem value="">None</MenuItem>
+          <Box display="flex" flexDirection="row">
+
+   <Box>
+   <MenuItem value="">None</MenuItem>
+   </Box>
                 {
                     options.map(
-                        item => (<MenuItem key={item.id} value={item.id}>{item.price ? item.title+" "+item.price : item.title }</MenuItem>)
+                        item => (<Box><MenuItem key={item.id} value={item.id}>{item.price ? item.title+" "+item.price : item.title }</MenuItem></Box>)
                     )
                 }
-               
+               </Box>
         </TextField>
   )
 }
