@@ -25,13 +25,20 @@ const AvailableTable = (props) => {
 const [sunday,setSunday] = React.useState(false)
 const [monday,setMonday] = React.useState(false)
 const [empty,setEmpty] = React.useState()
-const [age,setAge] = React.useState()
+const [starttime,setStartTime] = React.useState()
+const [endtime,setEndTime] = React.useState()
 
- const handleChangeSelect = (event) => {
 
- setAge( event.target.value)
+ const handleChangeSelectStartTime = (event) => {
+
+ setStartTime( event.target.value)
 
   };
+  const handleChangeSelectEndTime = (event) => {
+
+    setEndTime( event.target.value)
+   
+     };
   const handleRemoveSpecificRow = (idx) => () => {
     const rowst = [...rows]
     rowst.splice(idx, 1)
@@ -78,7 +85,7 @@ const [age,setAge] = React.useState()
               <TableCell component="th" scope="row" sx={{padding:"0px",fontSize:"18px"}}>
                {props.title}
               </TableCell>
-              <TableCell align="right" >
+              <TableCell align="right"  >
     <Switch checked={sunday} onChange={()=>setSunday(!sunday)}/>
               </TableCell>
               <TableCell align="right" sx={{paddingRight:"0px",paddingLeft:"0px"}}>
@@ -98,17 +105,20 @@ const [age,setAge] = React.useState()
                         <TableCell sx={{borderBottom:"none"}}>
                         <Box sx={{ minWidth: 100}}>
         <FormControl fullWidth>
-          <InputLabel id="demo-simple-select-label">Age</InputLabel>
+          <InputLabel id="demo-simple-select-label">Start Time</InputLabel>
           <Select
             labelId="demo-simple-select-label"
             id="demo-simple-select"
-            value={age}
-            label="Age"
-            onChange={handleChangeSelect}
+            value={starttime}
+            label="Start Time"
+            onChange={handleChangeSelectStartTime}
           >
-            <MenuItem value={10}>Ten</MenuItem>
-            <MenuItem value={20}>Twenty</MenuItem>
-            <MenuItem value={30}>Thirty</MenuItem>
+            <MenuItem  value="">None</MenuItem>
+                {
+                    employeeService.getTimeCollection().map(
+                        item => (<MenuItem key={item.id} value={item.id}>{item.price ? item.title+" "+item.price : item.title }</MenuItem>)
+                    )
+                }
           </Select>
         </FormControl>
       </Box>
@@ -116,18 +126,21 @@ const [age,setAge] = React.useState()
                         <TableCell sx={{borderBottom:"none"}}>
                         <Box sx={{ minWidth: 100 }}>
         <FormControl fullWidth>
-          <InputLabel id="demo-simple-select-label">Age</InputLabel>
+          <InputLabel id="demo-simple-select-label">End Time</InputLabel>
           <Select
             labelId="demo-simple-select-label"
             id="demo-simple-select"
-            value={age}
-            label="Age"
-            
-            onChange={handleChangeSelect}
+            value={endtime}
+            label="End Time"
+            onChange={handleChangeSelectEndTime}
           >
-            <MenuItem value={10}>Ten</MenuItem>
-            <MenuItem value={20}>Twenty</MenuItem>
-            <MenuItem value={30}>Thirty</MenuItem>
+             <MenuItem  value="">None</MenuItem>
+                {
+                    employeeService.getTimeCollection().map(
+                        item => (<MenuItem key={item.id} value={item.id}>{item.price ? item.title+" "+item.price : item.title }</MenuItem>)
+                    )
+                }
+          
           </Select>
         </FormControl>
       </Box>

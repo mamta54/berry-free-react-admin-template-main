@@ -28,7 +28,7 @@ const Availability = () => {
        <>
   <Grid container spacing={2}>
     <Grid item xs={12} sm={7}>
-      <MainCard title="Schedule Appointment" >
+      <MainCard title="Default Hours" >
       <TableContainer   component={Paper}>
       <Table sx={{ minWidth: 640 }} aria-label="simple table">
        
@@ -53,7 +53,7 @@ const Availability = () => {
    </MainCard>
    </Grid>
    <Grid item xs={12} sm={5}>
-      <MainCard title="Schedule Appointment" >
+      <MainCard title="Schedule Override" >
 <AvailableDisplay/>
    </MainCard>
    </Grid>

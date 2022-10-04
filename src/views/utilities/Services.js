@@ -1,8 +1,7 @@
 import React, { useState } from 'react'
-import AvailableForm from "./AvailableForm";
-import {makeStyles} from "@mui/styles"
-
-import { Paper,  TableBody, TableRow, TableCell, Toolbar, InputAdornment } from '@mui/material';
+import ServiceForm from "./ServiceForm";
+import PeopleOutlineTwoToneIcon from '@material-ui/icons/PeopleOutlineTwoTone';
+import { Paper, TableBody, TableRow, TableCell, Toolbar, InputAdornment } from '@mui/material';
 import useTable from "./useTable";
 import * as employeeService from "./services/employeeService";
 import Controls from "./controls/Controls";
@@ -11,18 +10,34 @@ import AddIcon from '@material-ui/icons/Add';
 import Popup from "./controls/Popup";
 import EditOutlinedIcon from '@material-ui/icons/EditOutlined';
 import CloseIcon from '@material-ui/icons/Close';
+import { makeStyles } from '@mui/styles';
+
+const useStyles = makeStyles(theme => ({
+    pageContent: {
+        margin: theme.spacing(5),
+        padding: theme.spacing(3)
+    },
+    searchInput: {
+        width: '75%'
+    },
+    newButton: {
+        position: 'absolute',
+        right: '10px'
+    }
+}))
 
 
 const headCells = [
-    { id: 'fullName', label: 'Employee Name' },
-    { id: 'email', label: 'Email Address (Personal)' },
-    { id: 'mobile', label: 'Mobile Number' },
-    { id: 'department', label: 'Department' },
-    { id: 'actions', label: 'Actions', disableSorting: true }
+    { id: 'fullName', label: 'Service Name' },
+    { id: 'email', label: 'Service Description' },
+    { id: 'mobile', label: 'Service Price' },
+    { id: 'department', label: 'Service Duration' },
+    { id: 'actions', label: 'Assigned Doctors' }
 ]
 
-export default function AvailableDisplay() {
+export default function Services() {
 
+    const classes = useStyles();
     const [recordForEdit, setRecordForEdit] = useState(null)
     const [records, setRecords] = useState(employeeService.getAllEmployees())
     const [filterFn, setFilterFn] = useState({ fn: items => { return items; } })
@@ -31,9 +46,8 @@ export default function AvailableDisplay() {
     const {
         TbleContainer,
         TblHead,
-        recordsAfterPagingAndSorting,
-        TblPaging
-       
+        TblPaging,
+        recordsAfterPagingAndSorting
     } = useTable(records, headCells, filterFn);
 
     const handleSearch = e => {
@@ -71,26 +85,44 @@ export default function AvailableDisplay() {
     }
     return (
         <>
-           
+          
+            <Paper className={classes.pageContent}>
 
-                <Toolbar>                  
+                <Toolbar>
+                    <Controls.Input
+                        label="Search service"
+                        className={classes.searchInput}
+                        InputProps={{
+                            startAdornment: (<InputAdornment position="start">
+                                <Search />
+                            </InputAdornment>)
+                        }}
+                        onChange={handleSearch}
+                    />
                     <Controls.Buttons
                         text="Add New"
                         variant="outlined"
                         startIcon={<AddIcon />}
-                      
+                        className={classes.newButton}
                         onClick={() => { setOpenPopup(true); setRecordForEdit(null); }}
                     />
                 </Toolbar>
                 <TbleContainer>
+                    <TblHead />
                     <TableBody>
                         {
                             recordsAfterPagingAndSorting().map(item =>
                                 (<TableRow key={item.id}>
-                                    <TableCell>{item.ScheduleDate}</TableCell>
-                                    <TableCell>{item.starttime} - {item.endtime}</TableCell>
+                                    <TableCell>{item.fullName}</TableCell>
+                                    <TableCell>{item.email}</TableCell>
+                                    <TableCell>{item.mobile}</TableCell>
+                                    <TableCell>{item.department}</TableCell>
                                     <TableCell>
-                                     
+                                        <Controls.ActionButton
+                                            color="primary"
+                                            onClick={() => { openInPopup(item) }}>
+                                            <EditOutlinedIcon fontSize="small" />
+                                        </Controls.ActionButton>
                                         <Controls.ActionButton
                                             color="secondary"
                                             onClick={
@@ -105,15 +137,14 @@ export default function AvailableDisplay() {
                         }
                     </TableBody>
                 </TbleContainer>
-            
-            
+                <TblPaging />
+            </Paper>
             <Popup
-                title="Schedule Override"
+                title="Employee Form"
                 openPopup={openPopup}
                 setOpenPopup={setOpenPopup}
-                
             >
-                <AvailableForm
+                <ServiceForm
                     recordForEdit={recordForEdit}
                     addOrEdit={addOrEdit} />
             </Popup>

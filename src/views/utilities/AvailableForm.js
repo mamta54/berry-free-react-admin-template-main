@@ -4,7 +4,7 @@ import Controls from "./controls/Controls";
 import { useForm, Form } from './useForm';
 import * as employeeService from "./services/employeeService";
 import Select from './controls/Select';
-
+import {FormControlLabel} from '@mui/material';
 
 
 const initialFValues = {
@@ -16,7 +16,7 @@ const initialFValues = {
 
 export default function AvailableForm(props) {
     const { addOrEdit, recordForEdit } = props
-const [available,setAvailable] = useState(false)
+const [notavailable,setNotAvailable] = useState(false)
 const [isAv,setIsAv] = useState(false)
     const validate = (fieldValues = values) => {
         let temp = { ...errors }
@@ -65,17 +65,25 @@ const [isAv,setIsAv] = useState(false)
                 />
             </Grid>
             <Grid item xs={12} sm={6}>
-
-            <Switch checked={available}  onChange={(e)=>{setAvailable(!available)}}/>
+            <FormControlLabel
+          control={
+            <Switch checked={notavailable}   onChange={(e)=>{setNotAvailable(!notavailable)}}/>
+          }
+          label="Mark As Unavailable"
+        />
+            
             </Grid>
-      {  available ?  <Grid item xs={12} sm={6}>
+      {  notavailable ?  
+                     <Grid item xs={12} sm={6}> </Grid>  
+                    :
+                    <Grid item xs={12} sm={6}>
       <Grid container spacing={2}>
         <Grid item xs={12} sm={6}>
                     <Select
                         name="starttime"
                         label="Start Time"
                         value={values.starttime}  
-                        options={employeeService.getDoctorCollection()}
+                        options={employeeService.getTimeCollection()}
                         onChange={handleInputChange}
                         
                     />
@@ -87,14 +95,12 @@ const [isAv,setIsAv] = useState(false)
                         onChange={handleInputChange}
 
                         value={values.endtime}  
-                        options={employeeService.getDoctorCollection()}
+                        options={employeeService.getTimeCollection()}
                         
                     />
                     </Grid> 
                     </Grid>
                     </Grid>
-                    : <Grid item xs={12} sm={6}> </Grid>  
-                    
                 }
                 
                 <Grid item xs={12} sm={6}>

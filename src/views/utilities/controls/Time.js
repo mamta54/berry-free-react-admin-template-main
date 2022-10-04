@@ -6,17 +6,14 @@ import { Box } from '@mui/system';
 
 const Time = (props) => {
     const { name, label, value,error=null, onChange, options } = props;
-    const k = e => {
-console.log(e.target.value)
 
-    }
   return (
     <TextField
     {...(error && {error:true,helperText:error})}
           style={{ width: "100%" }}
           variant="outlined"
           value={value}
-          onChange={k}
+          onChange={onChange}
           select
           label={label}
           name={name}
@@ -28,17 +25,12 @@ console.log(e.target.value)
             }
             }}
         >
-          <Box display="flex" flexDirection="row">
-   <Box>
-   <MenuItem value="">None</MenuItem>
-   </Box>
+          <MenuItem  value="">None</MenuItem>
                 {
-
                     options.map(
-                        item => (<Box><MenuItem key={item.id} value="k">{item.price ? item.title+" "+item.price : item.title }</MenuItem></Box>)
+                        item => (<MenuItem key={item.id} value={item.id}>{item.price ? item.title+" "+item.price : item.title }</MenuItem>)
                     )
                 }
-               </Box>
         </TextField>
   )
 }

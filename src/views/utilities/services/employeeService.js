@@ -11,20 +11,28 @@ export const getDoctorCollection = () => ([
     { id: '3', title: 'Dr. Snehal' },
     { id: '4', title: 'Dr. Pooja' },
 ])
+
+
+
 export const getTimeCollection = () => ([
-    { id: '12:00 am', title: '12:00 am' },
-    { id: '12:15 am', title: '12:15 am' },
-    { id: '12:30 am', title: '12:30 am' },
-    { id: '12:35 am', title: '12:35 am' },
-    { id: 'male', title: 'Male' },
-    { id: 'male', title: 'Male' },
-    { id: 'male', title: 'Male' },
-    { id: 'male', title: 'Male' },
-    { id: 'male', title: 'Male' },
-    { id: 'male', title: 'Male' },
-    { id: 'male', title: 'Male' },
-    { id: 'male', title: 'Male' },
-    { id: 'male', title: 'Male' },
+    { id: '1', title: '9:00 am' },
+    { id: '2', title: '9:30 am' },
+    { id: '3', title: '10:00 am' },
+    { id: '4', title: '10:30 am' },
+    { id: '5', title: '11:00 am' },
+    { id: '6', title: '11:30 am' },
+    { id: '7', title: '12:00 pm' },
+    { id: '8', title: '12:30 pm' },
+    { id: '9', title: '1:00 pm' },
+    { id: '10', title: '1:30 pm' },
+    { id: '11', title: '2:00 pm' },
+    { id: '12', title: '2:30 pm' },
+    { id: '13', title: '3:00 pm' },
+    { id: '14', title: '3:30 pm' },
+    { id: '15', title: '4:00 pm' },
+    { id: '16', title: '4:30 pm' },
+    { id: '17', title: '5:00 pm' },
+
 
 ])
 export const getServiceCollection = () => ([
@@ -101,9 +109,11 @@ export function getAllappointments() {
         //map departmentID to department title
         let doctors = getDoctorCollection();
         let services = getServiceCollection();
+        let times = getTimeCollection();
         return appointments.map(x => ({
             ...x,
             doctorr: doctors[x.doctor-1].title,
+            times: times[x.time - 1].title,
             services: services[x.service - 1].title,
             price: services[x.service - 1].price
 

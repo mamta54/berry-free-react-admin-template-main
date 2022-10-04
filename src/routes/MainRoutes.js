@@ -18,6 +18,7 @@ const ViewCalender = Loadable(lazy(() => import('views/utilities/ViewCalender'))
 const Availability = Loadable(lazy(() => import('views/utilities/Availability')));
 const AvailableDisplay = Loadable(lazy(() => import('views/utilities/AvailableDisplay')));
 const ServiceDisplay = Loadable(lazy(() => import('views/utilities/ServiceDisplay')));
+const Services = Loadable(lazy(() => import('views/utilities/Services')));
 
 // sample page routing
 const SamplePage = Loadable(lazy(() => import('views/sample-page')));
@@ -95,15 +96,18 @@ const MainRoutes = {
                 }
             ]
         },
-        
+        {
+            path: 'Availability',
+            element: <Availability/>
+        }, {
+            path: 'Services',
+            element: <Services/>
+        },
         {
             path: 'labwork',
-            element: <SamplePage />
+            element: <Services/>
         },
-        {
-            path: 'Communication',
-            element: <SamplePage />
-        },
+       
        
         {
             path: 'report',
