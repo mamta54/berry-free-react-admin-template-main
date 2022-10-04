@@ -207,7 +207,7 @@ const Appointments = () => {
                     
                     <Grid item xs={12} sm={6}>
                     <div>
-                    <Controls.Button
+                    <Controls.Buttons
                             type="submit"
                             text="Submit"
                             
@@ -352,7 +352,7 @@ const Appointments = () => {
                 
                 <Grid item xs={12} sm={6}>
                     <div>
-                    <Controls.Button
+                    <Controls.Buttons
                             type="submit"
                             text="Submit"
                             

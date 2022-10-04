@@ -1,6 +1,8 @@
 const KEYS = {
     appointments : 'appointments',
-    appointmentId: 'appointmentId'
+    appointmentId: 'appointmentId',
+    employees: 'employees',
+    employeeId: 'employeeId'
 }
 
 export const getDoctorCollection = () => ([
@@ -31,7 +33,51 @@ export const getServiceCollection = () => ([
     { id: '3', title: 'Service 3',  price:'₹ 750' },
     { id: '4', title: 'Service 4',  price:'₹ 800' },
 ])
+export const getDepartmentCollection = () => ([
+    { id: '1', title: 'Development' },
+    { id: '2', title: 'Marketing' },
+    { id: '3', title: 'Accounting' },
+    { id: '4', title: 'HR' },
+])
+export function insertEmployee(data) {
+    let employees = getAllEmployees();
+    data['id'] = generateEmployeeId()
+    employees.push(data)
+    localStorage.setItem(KEYS.employees, JSON.stringify(employees))
+}
 
+export function updateEmployee(data) {
+    let employees = getAllEmployees();
+    let recordIndex = employees.findIndex(x => x.id == data.id);
+    employees[recordIndex] = { ...data }
+    localStorage.setItem(KEYS.employees, JSON.stringify(employees));
+}
+export function deleteEmployee(id) {
+    let employees = getAllEmployees();
+    employees = employees.filter(x => x.id != id)
+    localStorage.setItem(KEYS.employees, JSON.stringify(employees));
+}
+
+export function generateEmployeeId() {
+    console.log(localStorage.getItem(KEYS.employeeId))
+    if (localStorage.getItem(KEYS.employeeId) == null )
+{           
+        localStorage.setItem(KEYS.employeeId, '0')}
+    var id = parseInt(localStorage.getItem(KEYS.employeeId))
+    localStorage.setItem(KEYS.employeeId, (++id).toString())
+    return id;
+}
+
+export function getAllEmployees() {
+    if (localStorage.getItem(KEYS.employees) == null)
+        localStorage.setItem(KEYS.employees, JSON.stringify([]))
+    let employees = JSON.parse(localStorage.getItem(KEYS.employees));
+    //map departmentID to department title
+    let departments = getDepartmentCollection();
+    return employees.map(x => ({
+        ...x,
+    }))
+}
 
 export function insertAppointment(data){
     let appointments = getAllappointments();
@@ -41,7 +87,9 @@ export function insertAppointment(data){
 }
 export function generateappointmentId() {
     if (localStorage.getItem(KEYS.appointmentId) == null)
-        localStorage.setItem(KEYS.appointmentId, '0')
+        {
+    
+            localStorage.setItem(KEYS.appointmentId, '0')}
     var id = parseInt(localStorage.getItem(KEYS.appointmentId))
     localStorage.setItem(KEYS.appointmentId, (++id).toString())
     return id;

@@ -1,16 +1,17 @@
-import { Divider, Grid, Switch, Typography } from '@mui/material'
+import { Divider, Grid, Switch, Typography,Button } from '@mui/material'
 import React from 'react'
 import { useState } from 'react'
 import MainCard from 'ui-component/cards/MainCard'
 import Controls from './controls/Controls'
 import * as employeeService from "./services/employeeService";
-import AvailableTable from './AvailableTable'
+import ServiceCategoryTable from "./ServiceCategoryTable"
 import {Paper} from '@mui/material'
 import TableBody from '@mui/material/TableBody';
 import TableCell from '@mui/material/TableCell';
 import TableContainer from '@mui/material/TableContainer';
 import Table from '@mui/material/Table';
 import AvailableDisplay from './AvailableDisplay'
+import AvailableTable from './AvailableTable'
 const Availability = () => {
     const [checked,setChecked] = useState(false)
     const [start,setStart] = useState('9:00 am')
@@ -26,38 +27,15 @@ const Availability = () => {
 
   return (
        <>
-  <Grid container spacing={2}>
-    <Grid item xs={12} sm={7}>
+ 
       <MainCard title="Schedule Appointment" >
-      <TableContainer   component={Paper}>
-      <Table sx={{ minWidth: 640 }} aria-label="simple table">
-       
-        <TableBody>
-<AvailableTable title="Sunday" rows={sundayrows} />
-<Divider/>
-<AvailableTable title="Monday" rows={mondayrows} />
-<Divider/>
-<AvailableTable title="Tuesdat" rows={tuesdayrows} />
-<Divider/>
-<AvailableTable title="Wednesday" rows={wednesdayrows} />
-<Divider/>
-<AvailableTable title="Thursday" rows={thursdayrows} />
-<Divider/>
-<AvailableTable title="Friday" rows={fridayrows} />
-<Divider/>
-<AvailableTable title="Saturday" rows={saturdayrows} />
+      
+{/* <ServiceCategoryTable title="Sunday" rows={sundayrows} /> */}
 
-</TableBody>
-      </Table>
-    </TableContainer>
-   </MainCard>
-   </Grid>
-   <Grid item xs={12} sm={5}>
-      <MainCard title="Schedule Appointment" >
 <AvailableDisplay/>
+
    </MainCard>
-   </Grid>
-   </Grid>
+   
   </>
   )
 }

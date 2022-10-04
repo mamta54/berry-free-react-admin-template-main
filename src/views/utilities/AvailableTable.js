@@ -26,6 +26,7 @@ const [sunday,setSunday] = React.useState(false)
 const [monday,setMonday] = React.useState(false)
 const [empty,setEmpty] = React.useState()
 const [age,setAge] = React.useState()
+
  const handleChangeSelect = (event) => {
 
  setAge( event.target.value)
@@ -74,23 +75,28 @@ const [age,setAge] = React.useState()
               key="1"
               sx={{ '&:last-child td, &:last-child th': { border: 0 } }}
             >
-              <TableCell component="th" scope="row" sx={{padding:"0px"}}>
-                dhruvi
+              <TableCell component="th" scope="row" sx={{padding:"0px",fontSize:"18px"}}>
+               {props.title}
               </TableCell>
               <TableCell align="right" >
     <Switch checked={sunday} onChange={()=>setSunday(!sunday)}/>
               </TableCell>
+              <TableCell align="right" sx={{paddingRight:"0px",paddingLeft:"0px"}}>
+              {
+                sunday ? "Available" : "Unavailable"
+              }
+              </TableCell>
             {
               sunday  ?
               <TableCell align="right" >
-            
+                
               <Table sx={{ }} aria-label="simple table">
          
           <TableBody>
                     {rows.map((item, idx) => (
                       <TableRow id="addr0" key={idx}>
                         <TableCell sx={{borderBottom:"none"}}>
-                        <Box sx={{ minWidth: 120 }}>
+                        <Box sx={{ minWidth: 100}}>
         <FormControl fullWidth>
           <InputLabel id="demo-simple-select-label">Age</InputLabel>
           <Select
@@ -108,7 +114,7 @@ const [age,setAge] = React.useState()
       </Box>
                         </TableCell>
                         <TableCell sx={{borderBottom:"none"}}>
-                        <Box sx={{ minWidth: 120 }}>
+                        <Box sx={{ minWidth: 100 }}>
         <FormControl fullWidth>
           <InputLabel id="demo-simple-select-label">Age</InputLabel>
           <Select
@@ -144,7 +150,7 @@ const [age,setAge] = React.useState()
             
               </TableCell>
               :
-              <TableCell sx={{minWidth:"300px"}}></TableCell>
+              <TableCell sx={{minWidth:"320px"}}></TableCell>
   }
             </TableRow>
            

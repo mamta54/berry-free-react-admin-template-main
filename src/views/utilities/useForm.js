@@ -15,6 +15,9 @@ export const useForm = (initialFormValues,validateOnChange=false,validate) => {
         validate({[name] : value})
 
     }
+    const handleSwitchChange = e => {
+        
+    }
     const resetForm = () => {
         setValues(initialFormValues);
         setErrors({})
