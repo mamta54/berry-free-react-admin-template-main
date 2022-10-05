@@ -12,7 +12,11 @@ export const getDoctorCollection = () => ([
     { id: '4', title: 'Dr. Pooja' },
 ])
 
-
+export const meridiem= () => ([
+    { id: '1', title: 'AM' },
+    { id: '2', title: 'PM' },
+   
+])
 
 export const getTimeCollection = () => ([
     { id: '1', title: '9:00 am' },

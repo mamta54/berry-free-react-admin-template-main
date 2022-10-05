@@ -7,7 +7,10 @@ import Select from './controls/Select';
 // import Date from './controls/Date';
 import Time from './controls/Time';
 import { Divider, Paper, Toolbar, Typography } from '@mui/material';
-
+import Accordion from '@mui/material/Accordion';
+import AccordionSummary from '@mui/material/AccordionSummary';
+import AccordionDetails from '@mui/material/AccordionDetails';
+import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
 
 const m = (new Date().getMonth()+1) <= 9 ? "0"+(new Date().getMonth()+1) : (new Date().getMonth()+1);
     const d = new Date().getDate();
@@ -32,13 +35,15 @@ const initialFormValues = {
     village:"",
     area:"",
     state:"Gujarat",
-    pincode:"",
+    pincode:"388001",
     email2:"",
     allergy:[],
     continue:"no",
     dob:"",
     age:"",
-   
+    timehour:"",
+    timemin:"",
+    timeampm:"",
     referredBy:""
 
 }
@@ -85,7 +90,7 @@ const Appointments = () => {
         setErrors,
         handleInputChange,
         resetForm
-    }= useForm(initialFormValues,true,validate);
+    }= useForm(initialFormValues,false,validate);
 
     useEffect(() => {
         console.log(values);
@@ -95,14 +100,14 @@ const Appointments = () => {
     
     const handleSubmit = e => {
         e.preventDefault()
-        if(validate())
-        {
+        // if(validate())
+        // {
             console.log(values)
             employeeService.insertAppointment(values);
             resetForm()
             window.alert('testing...')
 
-        }
+        // }
     }    
 
     return (
@@ -114,48 +119,36 @@ const Appointments = () => {
                         label="Case No."
                         value={values.caseno}
                         onChange={handleInputChange}
-                        required
+                       
                         />
                     </Grid>
                     <Grid item xs={12} sm={6}>
-                    <Select
-                        name="service"
+                    
+                    <Controls.Input
+                        name='service'
                         label="Service"
                         value={values.service}
                         onChange={handleInputChange}
-                        error={errors.service}
-                        required
-                        options={employeeService.getServiceCollection()}
                         
-                    />
+                        />
                     </Grid>
                     <Grid item xs={12} sm={6}>
                         <Controls.Input
                         name='firstname'
-                        label="First Name"
+                        label="Full Name"
                         value={values.firstname}
                         onChange={handleInputChange}
                         
-                        required
                         />
                     </Grid>
-                    <Grid item xs={12} sm={6}>
-                        <Controls.Input
-                        name='lastname'
-                        value={values.lastname}
-                        label="Last Name"
-                        onChange={handleInputChange}
-                        required
-                        />
-                    </Grid>
+                    
                     <Grid item xs={12} sm={6}>
                     <Controls.Input
                     name="mobno"
                      label="Mobile No"
                      value={values.mobno}
                       onChange={handleInputChange}  
-                      error={errors.mobno}
-                      required
+                      
                     />
                     </Grid>
                     <Grid item xs={12} sm={6}>
@@ -164,8 +157,7 @@ const Appointments = () => {
                         label="Doctor"
                         value={values.doctor}
                         onChange={handleInputChange}
-                        error={errors.doctor}
-                        required
+                        
                         options={employeeService.getDoctorCollection()}
                         
                     />
@@ -174,23 +166,45 @@ const Appointments = () => {
                     <Controls.DatePicker
                     name="appointmentdate"
                      label="date"
-                     required
+                    
                      value={values.appointmentdate}
                       onChange={handleInputChange}  
                     />
                     </Grid>
                     <Grid item xs={12} sm={6}>
-                    <Time
-                        name="time"
-                        label="Time"
-                        value={values.time}
+                
+                <Grid container spacing={2}>
+                <Grid item xs={12} sm={4}>
+                <Controls.Input
+                    name="timehour"
+                     label="Hours"
+                     value={values.timehour}
+                      onChange={handleInputChange}  
+                      
+                    />
+                </Grid>
+                <Grid item xs={12} sm={4}>
+                <Controls.Input
+                    name='timemin'
+                    value={values.timemin}
+                    label="Mins"
+                    onChange={handleInputChange}
+                />
+                </Grid>
+                <Grid item xs={12} sm={4}>
+                    <Select
+                        name="timeampm"
+                        label="Meridiem"
+                        value={values.timeampm}
                         onChange={handleInputChange}
-                        // error={errors.doctor}
-                        required
-                        options={employeeService.getTimeCollection()}
+                        
+                        options={employeeService.meridiem()}
                         
                     />
                     </Grid>
+                </Grid>
+
+                </Grid>
                     <Grid item xs={12} sm={6}>
                     <Controls.RadioGroup
                     name="continue"
@@ -198,7 +212,7 @@ const Appointments = () => {
                     value={values.continue}
                     onChange={handleInputChange}
                     items={continueItems}
-                    required
+                   
                     />
                     </Grid>
                    
@@ -218,14 +232,18 @@ const Appointments = () => {
                     
                 </Grid>
              
-                
-                 <Toolbar>
-                        <Typography sx={{fontSize:"1.125rem",color:"#21212",fontWeight:500}}>
-                            Extra Information
-                        </Typography>
-                    
-                 </Toolbar>
-                <Divider/>
+                <Accordion sx={{marginTop:"20px"}}>
+        <AccordionSummary
+          expandIcon={<ExpandMoreIcon />}
+          aria-controls="panel1a-content"
+          id="panel1a-header"
+        >
+          <Typography variant="h4"> Extra Information</Typography>
+        </AccordionSummary>
+        <AccordionDetails>
+          
+        
+                 
                 <Paper sx={{marginTop:"10px",paddingTop:"10px"}}>
                   <Grid container spacing={2}>
                   <Grid item xs={12} sm={6}>
@@ -362,6 +380,8 @@ const Appointments = () => {
                     </Grid>
                 </Grid>
             </Paper>
+            </AccordionDetails>
+      </Accordion>
             </Form>
         )
 }
